@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raffi Prasetya Ramadhani</title>
+  <meta name="description" content="Senior IT Developer Support working on SQL Server and .NET for multifinance systems, moving into database administration.">
+  <meta property="og:title" content="Raffi Prasetya Ramadhani">
+  <meta property="og:description" content="SQL Server and .NET for multifinance systems. Moving into database administration.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F4FD8'/%3E%3Cellipse cx='16' cy='10' rx='8' ry='3' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M8 10v12c0 1.7 3.6 3 8 3s8-1.3 8-3V10M8 16c0 1.7 3.6 3 8 3s8-1.3 8-3' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top" aria-label="Home"><span class="brand__mark" aria-hidden="true"></span>raffi.pr</a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#experience" data-i18n="nav.exp">Experience</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-id" data-lang="id" aria-pressed="false">ID</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Senior IT Developer Support · heading into DBA</p>
+          <h1 data-i18n="hero.title">I keep the databases behind loan systems fast and correct.</h1>
+          <p class="lede" data-i18n="hero.lede">Day to day I support a loan-management system used by multifinance companies in Indonesia: SQL Server, stored procedures, regulatory reports, and the .NET and Angular code around them. I am moving that work toward database administration.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#work" data-i18n="hero.cta1">See the case study</a>
+            <a class="btn" href="#contact" data-i18n="hero.cta2">Get in touch</a>
+          </div>
+        </div>
+
+        <figure class="console" aria-label="Profile shown as a SQL query result">
+          <div class="console__bar">
+            <span class="console__tab">profile.sql</span>
+            <span class="console__meta">TuningLab · raffi</span>
+          </div>
+          <pre class="console__query"><code><span class="k">SELECT</span> name, role, focus, base
+<span class="k">FROM</span>   dbo.People
+<span class="k">WHERE</span>  handle = <span class="s">'raffipr'</span>;</code></pre>
+          <div class="console__result">
+            <table>
+              <thead>
+                <tr><th>name</th><th>role</th><th>focus</th><th>base</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Raffi P. Ramadhani</td>
+                  <td data-i18n="console.role">Sr. IT Dev Support</td>
+                  <td>SQL Server → DBA</td>
+                  <td>Tangerang, ID</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption class="console__status">
+            <span class="ok" aria-hidden="true"></span>
+            <span data-i18n="console.status">Query executed successfully.</span>
+            <span class="console__rows">1 row</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="work.eyebrow">Featured work</p>
+          <h2 id="work-h" data-i18n="work.title">SQL Server tuning case study</h2>
+          <p class="section__lede" data-i18n="work.lede">A fictional multifinance database with about 4.8 million installments and three slow queries that show up in almost every financing system. Each one comes with the diagnosis, the fix, what the fix costs, and a rollback.</p>
+        </header>
+
+        <div class="case">
+          <ol class="scenarios">
+            <li class="scenario">
+              <p class="scenario__tag">Scenario 1</p>
+              <h3 data-i18n="s1.title">Contract lookup by number</h3>
+              <dl>
+                <div><dt data-i18n="lbl.problem">Problem</dt><dd data-i18n="s1.problem">No index on <code>ContractNo</code>, and the app sends an <code>NVARCHAR</code> parameter to a <code>VARCHAR</code> column.</dd></div>
+                <div><dt data-i18n="lbl.fix">Fix</dt><dd data-i18n="s1.fix">Unique index plus the correct parameter type. The index alone still scans because of <code>CONVERT_IMPLICIT</code>.</dd></div>
+                <div><dt data-i18n="lbl.cost">Cost</dt><dd data-i18n="s1.cost">One narrow index, plus finding every caller that sends the wrong type.</dd></div>
+              </dl>
+            </li>
+            <li class="scenario">
+              <p class="scenario__tag">Scenario 2</p>
+              <h3 data-i18n="s2.title">Delinquency report by DPD bucket</h3>
+              <dl>
+                <div><dt data-i18n="lbl.problem">Problem</dt><dd data-i18n="s2.problem"><code>DATEDIFF</code> and <code>ISNULL</code> on columns make the filter non-sargable, so every installment is read.</dd></div>
+                <div><dt data-i18n="lbl.fix">Fix</dt><dd data-i18n="s2.fix">Sargable rewrite and a filtered index that holds only unpaid installments.</dd></div>
+                <div><dt data-i18n="lbl.cost">Cost</dt><dd data-i18n="s2.cost">Each payment posting touches the index. Equivalence holds only without partial payments.</dd></div>
+              </dl>
+            </li>
+            <li class="scenario">
+              <p class="scenario__tag">Scenario 3</p>
+              <h3 data-i18n="s3.title">Monthly collection per branch</h3>
+              <dl>
+                <div><dt data-i18n="lbl.problem">Problem</dt><dd data-i18n="s3.problem">Three correlated subqueries re-read the installment table, filtered with <code>YEAR()</code> and <code>MONTH()</code>.</dd></div>
+                <div><dt data-i18n="lbl.fix">Fix</dt><dd data-i18n="s3.fix">One pass over a half-open date range with a covering index on <code>DueDate</code>.</dd></div>
+                <div><dt data-i18n="lbl.cost">Cost</dt><dd data-i18n="s3.cost">A wide index on the largest table. Its size is measured before deciding to keep it.</dd></div>
+              </dl>
+            </li>
+          </ol>
+
+          <aside class="method" aria-labelledby="method-h">
+            <h3 id="method-h" data-i18n="method.title">How I tune a query</h3>
+            <ol class="method__steps">
+              <li data-i18n="method.1">Capture a baseline: logical reads, CPU, duration.</li>
+              <li data-i18n="method.2">Read the actual plan for scans, warnings, and bad estimates.</li>
+              <li data-i18n="method.3">Change one thing, then measure again.</li>
+              <li data-i18n="method.4">Prove the result set is identical.</li>
+              <li data-i18n="method.5">Count the write and storage cost.</li>
+              <li data-i18n="method.6">Ship it with a rollback script.</li>
+            </ol>
+            <div class="method__stack">
+              <span>T-SQL</span><span>Query Store</span><span>Execution plans</span><span>Filtered indexes</span>
+            </div>
+            <a class="btn btn--primary btn--block" href="https://github.com/Rapikebab/sqlserver-tuning-case-study" target="_blank" rel="noopener" data-i18n="work.cta">Read it on GitHub</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section section--alt" id="skills" aria-labelledby="skills-h">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="skills.eyebrow">Toolkit</p>
+          <h2 id="skills-h" data-i18n="skills.title">What I work with</h2>
+        </header>
+        <div class="skills">
+          <div class="skill skill--lead">
+            <h3 data-i18n="skills.db">Database</h3>
+            <ul>
+              <li>SQL Server</li><li>T-SQL</li><li data-i18n="skills.sp">Stored procedures</li>
+              <li data-i18n="skills.tune">Query tuning &amp; execution plans</li><li data-i18n="skills.mig">Safe migration scripts</li><li>SSMS</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <h3>Backend</h3>
+            <ul><li>C#</li><li>.NET Core Web API</li><li>ASP.NET</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Frontend</h3>
+            <ul><li>Angular</li><li>Blazor</li></ul>
+          </div>
+          <div class="skill">
+            <h3 data-i18n="skills.rep">Reporting &amp; documents</h3>
+            <ul><li>Crystal Reports</li><li data-i18n="skills.dyn">Dynamic report builder</li><li data-i18n="skills.docx">.docx contract templates</li></ul>
+          </div>
+          <div class="skill">
+            <h3 data-i18n="skills.ops">Production support</h3>
+            <ul><li data-i18n="skills.rca">Root cause analysis</li><li data-i18n="skills.uat">UAT coordination</li><li data-i18n="skills.bug">Bug fixing in production</li></ul>
+          </div>
+          <div class="skill">
+            <h3 data-i18n="skills.domain">Domain</h3>
+            <ul><li data-i18n="skills.fin">Conventional &amp; sharia financing</li><li data-i18n="skills.reg">SLIK OJK &amp; SIPP reporting</li><li data-i18n="skills.tax">PPh 23 withholding reports</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="exp.eyebrow">Experience</p>
+          <h2 id="exp-h" data-i18n="exp.title">Where I have been</h2>
+        </header>
+        <div class="timeline">
+          <article class="role">
+            <div class="role__when" data-i18n="exp.now">Present</div>
+            <div class="role__body">
+              <h3>Senior IT Developer Support</h3>
+              <p class="role__org">PT Inovasi Mitra Sejati (IMS Technology)</p>
+              <ul>
+                <li data-i18n="exp.b1">Maintain and support a loan-management system for multiple multifinance clients, covering conventional and sharia financing.</li>
+                <li data-i18n="exp.b2">Handle production incidents end to end: reproduce, fix, write the root cause analysis, and coordinate UAT with clients.</li>
+                <li data-i18n="exp.b3">Build SQL-based dynamic reports, including tax withholding (PPh 23) and user-access reports with complex join hierarchies.</li>
+                <li data-i18n="exp.b4">Fix journal balance errors in financing disbursement and write idempotent migration scripts that are safe to re-run.</li>
+                <li data-i18n="exp.b5">Maintain contract document templates generated from C# and stored procedures.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="role">
+            <div class="role__when">2020 – 2022</div>
+            <div class="role__body">
+              <h3 data-i18n="edu.title">Software Engineering (RPL)</h3>
+              <p class="role__org">SMK Wikrama Bogor</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="now">
+          <p class="eyebrow" data-i18n="now.eyebrow">Currently</p>
+          <ul>
+            <li data-i18n="now.1">Building more public SQL Server work: maintenance scripts and a .NET Core API backed by stored procedures.</li>
+            <li data-i18n="now.2">Studying Japanese, aiming for JLPT N3.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 id="contact-h" data-i18n="contact.title">Hiring for a DBA or SQL Server role?</h2>
+          <p class="section__lede" data-i18n="contact.lede">I am open to database and backend roles in banking and fintech. Email is the fastest way to reach me.</p>
+        </div>
+        <div class="contact__list">
+          <div class="contact__row">
+            <span class="contact__label">Email</span>
+            <span class="contact__value" id="email">raffiprasetyaramadhani@gmail.com</span>
+            <button type="button" class="copy" id="copy-email" data-i18n="contact.copy">Copy</button>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label">LinkedIn</span>
+            <a class="contact__value" href="https://www.linkedin.com/in/raffipr" target="_blank" rel="noopener">linkedin.com/in/raffipr</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label">GitHub</span>
+            <a class="contact__value" href="https://github.com/Rapikebab" target="_blank" rel="noopener">github.com/Rapikebab</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>© 2026 Raffi Prasetya Ramadhani</span>
+      <span data-i18n="footer.note">Plain HTML and CSS, hosted on GitHub Pages.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
