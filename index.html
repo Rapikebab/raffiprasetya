@@ -12,7 +12,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="style.css?v=4">
+  <script>
+    (function () {
+      var r = document.documentElement, m = "system", p = "slate";
+      try { m = localStorage.getItem("mode") || m; p = localStorage.getItem("palette") || p; } catch (e) {}
+      var dark = m === "dark" || (m === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      r.setAttribute("data-theme", dark ? "dark" : "light");
+      if (p !== "slate") r.setAttribute("data-palette", p);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
@@ -29,6 +38,27 @@
       <div class="lang" role="group" aria-label="Language">
         <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" id="lang-id" data-lang="id" aria-pressed="false">ID</button>
+      </div>
+      <div class="theme">
+        <button type="button" class="theme__btn" id="theme-btn" aria-haspopup="true" aria-expanded="false" aria-controls="theme-panel" aria-label="Theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        </button>
+        <div class="theme__panel" id="theme-panel" hidden>
+          <p class="theme__label" data-i18n="theme.mode">Mode</p>
+          <div class="seg" role="group" aria-label="Mode">
+            <button type="button" id="mode-system" data-mode="system" aria-pressed="true" data-i18n="theme.system">System</button>
+            <button type="button" id="mode-light" data-mode="light" aria-pressed="false" data-i18n="theme.light">Light</button>
+            <button type="button" id="mode-dark" data-mode="dark" aria-pressed="false" data-i18n="theme.dark">Dark</button>
+          </div>
+          <p class="theme__label" data-i18n="theme.color">Color</p>
+          <div class="swatches" role="group" aria-label="Color">
+            <button type="button" class="swatch" id="pal-slate" data-palette="slate" aria-pressed="true" aria-label="Slate" title="Slate" style="--sw:#334155"></button>
+            <button type="button" class="swatch" id="pal-ocean" data-palette="ocean" aria-pressed="false" aria-label="Ocean" title="Ocean" style="--sw:#2563EB"></button>
+            <button type="button" class="swatch" id="pal-emerald" data-palette="emerald" aria-pressed="false" aria-label="Emerald" title="Emerald" style="--sw:#059669"></button>
+            <button type="button" class="swatch" id="pal-violet" data-palette="violet" aria-pressed="false" aria-label="Violet" title="Violet" style="--sw:#7C3AED"></button>
+            <button type="button" class="swatch" id="pal-amber" data-palette="amber" aria-pressed="false" aria-label="Amber" title="Amber" style="--sw:#D97706"></button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -252,6 +282,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

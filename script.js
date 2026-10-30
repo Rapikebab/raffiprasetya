@@ -79,7 +79,12 @@
     "contact.title": "Sedang mencari DBA atau SQL Server developer?",
     "contact.lede": "Saya terbuka untuk posisi database dan backend di perbankan dan fintech. Email adalah cara tercepat menghubungi saya.",
     "contact.copy": "Salin",
-    "footer.note": "HTML dan CSS biasa, di-host di GitHub Pages."
+    "footer.note": "HTML dan CSS biasa, di-host di GitHub Pages.",
+    "theme.mode": "Mode",
+    "theme.system": "Sistem",
+    "theme.light": "Terang",
+    "theme.dark": "Gelap",
+    "theme.color": "Warna"
   };
 
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
@@ -132,6 +137,48 @@
       } else {
         fallback();
       }
+    });
+  }
+  // Theme: mode (system / light / dark) + color palette
+  var root = document.documentElement;
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function getPref(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
+  function setPref(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  var mode = getPref("mode", "system");
+  var palette = getPref("palette", "slate");
+  var modeBtns = Array.prototype.slice.call(document.querySelectorAll("[data-mode]"));
+  var palBtns = Array.prototype.slice.call(document.querySelectorAll(".swatch[data-palette]"));
+
+  function applyTheme() {
+    var dark = mode === "dark" || (mode === "system" && mq.matches);
+    root.setAttribute("data-theme", dark ? "dark" : "light");
+    if (palette === "slate") root.removeAttribute("data-palette");
+    else root.setAttribute("data-palette", palette);
+    modeBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
+    palBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-palette") === palette)); });
+  }
+  modeBtns.forEach(function (b) {
+    b.addEventListener("click", function () { mode = b.getAttribute("data-mode"); setPref("mode", mode); applyTheme(); });
+  });
+  palBtns.forEach(function (b) {
+    b.addEventListener("click", function () { palette = b.getAttribute("data-palette"); setPref("palette", palette); applyTheme(); });
+  });
+  var onSystemChange = function () { if (mode === "system") applyTheme(); };
+  if (mq.addEventListener) mq.addEventListener("change", onSystemChange); else if (mq.addListener) mq.addListener(onSystemChange);
+  applyTheme();
+
+  var themeBtn = document.getElementById("theme-btn");
+  var themePanel = document.getElementById("theme-panel");
+  function setOpen(open) {
+    themePanel.hidden = !open;
+    themeBtn.setAttribute("aria-expanded", String(open));
+  }
+  if (themeBtn && themePanel) {
+    themeBtn.addEventListener("click", function (e) { e.stopPropagation(); setOpen(themePanel.hidden); });
+    themePanel.addEventListener("click", function (e) { e.stopPropagation(); });
+    document.addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !themePanel.hidden) { setOpen(false); themeBtn.focus(); }
     });
   }
 })();
