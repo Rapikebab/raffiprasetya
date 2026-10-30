@@ -1,20 +1,21 @@
-/* Layout: single column of full-width bands; hero splits copy + a SQL "console" result grid. */
+/* Layout: single column of full-width bands; hero splits copy + a SQL "console" result grid.
+   Palette: White & Slate. Type: Inter (UI) + JetBrains Mono (code only). */
 :root {
-  --bg: #F3F5F8;
-  --surface: #FFFFFF;
-  --ink: #121620;
-  --muted: #586174;
-  --line: #DCE1E9;
-  --accent: #1F4FD8;
+  --bg: #FFFFFF;
+  --surface: #F1F5F9;
+  --ink: #0F172A;
+  --muted: #475569;
+  --line: #E2E8F0;
+  --accent: #0F172A;
   --accent-ink: #FFFFFF;
-  --accent-soft: #E6ECFC;
-  --mark: #A8650F;
-  --ok: #1E8A4C;
+  --accent-soft: #F1F5F9;
+  --mark: #64748B;
+  --ok: #16A34A;
   --console: #FFFFFF;
-  --console-head: #EEF1F6;
+  --console-head: #F1F5F9;
 
-  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
 
   --step--1: 0.875rem;
@@ -30,34 +31,34 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0F1218;
-    --surface: #161A22;
-    --ink: #E6E9EF;
-    --muted: #9AA3B5;
-    --line: #272D39;
-    --accent: #7E9BFF;
-    --accent-ink: #0F1218;
-    --accent-soft: #1C2540;
-    --mark: #E2A64C;
-    --ok: #4CC17E;
-    --console: #12161D;
-    --console-head: #1A1F29;
+    --bg: #0F172A;
+    --surface: #1E293B;
+    --ink: #F1F5F9;
+    --muted: #94A3B8;
+    --line: #334155;
+    --accent: #E2E8F0;
+    --accent-ink: #0F172A;
+    --accent-soft: #1E293B;
+    --mark: #94A3B8;
+    --ok: #4ADE80;
+    --console: #0F172A;
+    --console-head: #1E293B;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0F1218;
-  --surface: #161A22;
-  --ink: #E6E9EF;
-  --muted: #9AA3B5;
-  --line: #272D39;
-  --accent: #7E9BFF;
-  --accent-ink: #0F1218;
-  --accent-soft: #1C2540;
-  --mark: #E2A64C;
-  --ok: #4CC17E;
-  --console: #12161D;
-  --console-head: #1A1F29;
+  --bg: #0F172A;
+  --surface: #1E293B;
+  --ink: #F1F5F9;
+  --muted: #94A3B8;
+  --line: #334155;
+  --accent: #E2E8F0;
+  --accent-ink: #0F172A;
+  --accent-soft: #1E293B;
+  --mark: #94A3B8;
+  --ok: #4ADE80;
+  --console: #0F172A;
+  --console-head: #1E293B;
   color-scheme: dark;
 }
 
@@ -94,9 +95,9 @@ code { font-family: var(--f-mono); font-size: 0.88em; }
 }
 
 h1, h2, h3 { font-family: var(--f-display); line-height: 1.12; margin: 0; text-wrap: balance; }
-h1 { font-size: var(--step-3); font-weight: 700; letter-spacing: -0.02em; }
+h1 { font-size: var(--step-3); font-weight: 700; letter-spacing: -0.03em; }
 h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
-h3 { font-size: var(--step-1); font-weight: 500; }
+h3 { font-size: var(--step-1); font-weight: 600; letter-spacing: -0.01em; }
 p { margin: 0; }
 
 .eyebrow {
@@ -166,7 +167,7 @@ p { margin: 0; }
   background: var(--console);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: 0 1px 0 var(--line), 0 18px 40px -24px rgba(18, 22, 32, 0.35);
+  box-shadow: 0 1px 0 var(--line), 0 18px 40px -24px rgba(15, 23, 42, 0.30);
   overflow: hidden;
   font-family: var(--f-mono);
   font-size: 0.82rem;
@@ -225,7 +226,7 @@ p { margin: 0; }
   color: var(--muted); padding-top: 3px;
 }
 .scenario dd { margin: 0; }
-.scenario dd code { background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
+.scenario dd code { background: var(--bg); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
 
 .method {
   position: sticky; top: 84px;
